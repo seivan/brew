@@ -3602,14 +3602,14 @@ class Formula
     # @see https://spdx.github.io/spdx-spec/latest/annexes/spdx-license-expressions/ SPDX license expression guide
     # @api public
     sig {
-      params(args: T.nilable(T.any(String, Symbol, T::Hash[T.any(String, Symbol), T.anything])))
-        .returns(T.nilable(T.any(String, Symbol, T::Hash[T.any(String, Symbol), T.anything])))
+      params(args: T.nilable(SPDX::LicenseExpression))
+        .returns(T.nilable(SPDX::LicenseExpression))
     }
     def license(args = nil)
       if args.nil?
         @licenses
       else
-        @licenses = T.let(args, T.nilable(T.any(String, Symbol, T::Hash[T.any(String, Symbol), T.anything])))
+        @licenses = T.let(args, T.nilable(SPDX::LicenseExpression))
       end
     end
 
@@ -3936,7 +3936,7 @@ class Formula
     # ```
     #
     # @api public
-    sig { params(block: T.nilable(T.proc.returns(SoftwareSpec))).returns(T.untyped) }
+    sig { params(block: T.nilable(T.proc.void)).returns(T.untyped) }
     def stable(&block)
       return T.must(@stable) unless block
 
