@@ -116,7 +116,7 @@ jobs:
     name: formula audit
     needs: syntax
     if: github.repository_owner == 'Homebrew' && github.event_name != 'push'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     container:
       image: ghcr.io/homebrew/brew:main
     steps:
@@ -162,7 +162,7 @@ jobs:
   vendored-gems:
     name: vendored gems
     needs: syntax
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     steps:
       - name: Set up Homebrew
         id: set-up-homebrew
@@ -194,7 +194,7 @@ jobs:
       matrix:
         include:
           - name: update-test (Linux)
-            runs-on: ubuntu-latest
+            runs-on: ubuntu-slim
           - name: update-test (macOS)
             runs-on: macos-latest
     steps:
@@ -221,10 +221,10 @@ jobs:
         include:
           - name: tests (online)
             test-flags: --online --coverage --profile 3
-            runs-on: ubuntu-latest
+            runs-on: ubuntu-slim
           - name: tests (generic OS)
             test-flags: --generic --coverage --profile 3
-            runs-on: ubuntu-latest
+            runs-on: ubuntu-slim
           - name: tests (Linux)
             test-flags: --coverage --profile 3
             runs-on: ubuntu-24.04
@@ -324,11 +324,11 @@ jobs:
             runs-on: ubuntu-24.04-arm
             container: ghcr.io/homebrew/ubuntu24.04:latest
           - name: test-bot (Linux x86_64)
-            runs-on: ubuntu-latest
+            runs-on: ubuntu-slim
             container: ghcr.io/homebrew/ubuntu22.04:main
           # Use Debian Old Stable for testing Homebrew's glibc support.
           - name: test-bot (Linux Homebrew glibc)
-            runs-on: ubuntu-latest
+            runs-on: ubuntu-slim
             container: debian:oldstable
           - name: test-bot (macOS x86_64)
             runs-on: macos-15-intel
@@ -403,7 +403,7 @@ jobs:
       matrix:
         include:
           - name: bundle and services (Linux)
-            runs-on: ubuntu-latest
+            runs-on: ubuntu-slim
           - name: bundle and services (macOS)
             runs-on: macos-latest
     steps:
@@ -452,7 +452,7 @@ jobs:
       matrix:
         include:
           - name: analytics (Linux)
-            runs-on: ubuntu-latest
+            runs-on: ubuntu-slim
           - name: analytics (macOS)
             runs-on: macos-latest
     needs: syntax

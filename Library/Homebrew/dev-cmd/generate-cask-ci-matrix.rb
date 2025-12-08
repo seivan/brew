@@ -108,7 +108,7 @@ module Homebrew
             # The syntax job only runs `style` at this point, which should work on Linux.
             # Running on macOS is currently faster though, since `homebrew/cask` and
             # `homebrew/core` are already tapped on macOS CI machines.
-            # syntax_job[:runner] = "ubuntu-latest"
+            # syntax_job[:runner] = "ubuntu-slim"
           end
 
           matrix += cask_jobs

@@ -23,7 +23,7 @@ env:
 jobs:
   generate-tags:
     if: github.repository_owner == 'Homebrew'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     outputs:
       matrix: ${{ steps.attributes.outputs.matrix }}
       tags: ${{ steps.attributes.outputs.tags }}
@@ -135,7 +135,7 @@ jobs:
     needs: generate-tags
     if: github.repository_owner == 'Homebrew'
     name: docker (${{ matrix.arch }} Ubuntu ${{ matrix.version }})
-    runs-on: ${{ matrix.arch == 'arm64' && 'ubuntu-24.04-arm' || 'ubuntu-latest' }}
+    runs-on: ${{ matrix.arch == 'arm64' && 'ubuntu-24.04-arm' || 'ubuntu-slim' }}
     strategy:
       fail-fast: false
       matrix:
@@ -226,7 +226,7 @@ jobs:
   merge:
     needs: [generate-tags, build]
     if: github.repository_owner == 'Homebrew' && fromJSON(needs.generate-tags.outputs.merge)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     strategy:
       fail-fast: false
       matrix:

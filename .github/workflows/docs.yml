@@ -23,7 +23,7 @@ defaults:
 
 jobs:
   docs:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     steps:
       - name: Set up Homebrew
         id: set-up-homebrew
@@ -103,7 +103,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     outputs:
       deploy_url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     timeout-minutes: 10
     steps:
       - name: Deploy to GitHub Pages
@@ -116,7 +116,7 @@ jobs:
     if: ${{ github.repository == 'Homebrew/brew' && always() && github.ref_name == 'main' }}
     env:
       RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     timeout-minutes: 5
     permissions:
       issues: write # for Homebrew/actions/create-or-update-issue
